@@ -1,0 +1,8 @@
+<form [formGroup]="productForm">
+  <input type="text" formControlName="name" placeholder="name" /> <br/>
+  <input type="text" formControlName="qty" placeholder="quantity"/>
+</form>
+
+<button (click)="addProduct()" *ngIf="mode== 'NEW'">add product</button>
+
+<button (click)="editProduct()" *ngIf="mode== 'EDIT'">edit product</button>

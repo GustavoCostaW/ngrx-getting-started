@@ -1,0 +1,16 @@
+<ul *ngIf="(products$ | async) as productsSlice">
+  <li *ngFor="let item of productsSlice.data">
+    ID: {{item.id}}
+    NAME: {{item.name}}
+    QUANTITY: {{item.qty}}
+
+    <a [routerLink]="['edit/'+item.id]"> edit </a>
+    <a (click)="remove(item.id)"> remove </a>
+  </li>
+</ul>
+
+
+<button [routerLink]="['new']">add product</button>
+
+
+<router-outlet></router-outlet>
