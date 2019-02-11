@@ -36,29 +36,24 @@ export function reducer(
       currentProduct: updatedProduct
     };
 
-    case '[Products] Load Product by Id':
-
-    const currentProduct = state.data.find( product => {
-      return product.id === parseInt(action.payload, 10 );
-    });
-
+    case '[Products] Load Product by Id Success':
 
     return {
       ...state,
-      currentProduct: currentProduct
+      currentProduct: action.payload
     };
 
 
-    case '[Products] Remove Product':
+    // case '[Products] Remove Product':
 
-    const newProducts = state.data.filter( product => {
-      return product.id !== action.payload;
-    });
+    // const newProducts = state.data.filter( product => {
+    //   return product.id !== action.payload;
+    // });
 
-    return {
-      ...state,
-      data: newProducts
-    };
+    // return {
+    //   ...state,
+    //   data: newProducts
+    // };
 
     case '[Products] Load Products Success':
 
@@ -67,6 +62,7 @@ export function reducer(
       data: action.payload,
       loading: false
     };
+
 
     default:
 

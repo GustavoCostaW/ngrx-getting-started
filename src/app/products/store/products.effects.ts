@@ -8,7 +8,7 @@ import {
   map
 } from 'rxjs/operators';
 import {
-   LoadProductsSuccess, AddProductSuccess} from './products.actions';
+   LoadProductsSuccess, AddProductSuccess, LoadProductByIdSuccess, RemoveProductSuccess, EditProductSuccess} from './products.actions';
 
 
 @Injectable()
@@ -42,4 +42,44 @@ export class ProductEffects {
       );
     })
   );
+
+  @Effect()
+  loadById$ = this.actions$.pipe(
+    ofType(
+      '[Products] Load Product by Id'
+      ),
+    mergeMap((action: any) => {
+      return this.productService.getById(action.payload)
+             .pipe(map( snapshot => {
+              return new LoadProductByIdSuccess(
+                {id: action.payload, ...snapshot.data()}
+              );
+            }));
+    })
+  );
+
+  @Effect()
+  removeProduct$ = this.actions$.pipe(
+    ofType(
+      '[Products] Remove Product'
+      ),
+    mergeMap((action: any) => {
+      return this.productService.delete(action.payload)
+              .pipe(map(() => new RemoveProductSuccess()));
+    })
+  );
+
+  @Effect()
+  editProduct$ = this.actions$.pipe(
+    ofType(
+      '[Products] Edit Product'
+      ),
+    mergeMap((action: any) => {
+      return this.productService.update(action.payload.id, action.payload.data)
+              .pipe(map(() => new EditProductSuccess()));
+    })
+  );
 }
+
+
+

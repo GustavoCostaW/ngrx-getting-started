@@ -31,14 +31,14 @@ export class ProductComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(
       this.actRouter.paramMap.subscribe(paramsMap => {
-        this.editModeId = parseInt(paramsMap.get('id'), 10);
+        this.editModeId = paramsMap.get('id');
         this.defineMode();
       })
     );
 
     this.subscriptions.push(
       this.store.select('products')
-        .pipe(filter(state => state.currentProduct)).subscribe(v => {
+        .pipe(filter(state => state.currentProduct && this.mode === 'EDIT')).subscribe(v => {
           this.productForm.patchValue({ ...v.currentProduct });
         })
     );
