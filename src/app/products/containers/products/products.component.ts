@@ -1,4 +1,4 @@
-import { RemoveProduct } from './../../store/products.actions';
+import { RemoveProduct, LoadProducts } from './../../store/products.actions';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.store.dispatch(new LoadProducts());
     this.products$ = this.store.select('products');
   }
 

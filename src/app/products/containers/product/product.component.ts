@@ -57,7 +57,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   addProduct() {
 
     const newProduct = {
-      id: Math.round(Math.random() * 100),
       ...this.productForm.value
     };
 

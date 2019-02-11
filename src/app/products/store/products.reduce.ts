@@ -11,13 +11,14 @@ export function reducer(
 ) {
 
   switch (action.type) {
-    case '[Products] Add Product':
 
-    const newProductsList = [...state.data, action.payload];
+    // case '[Products] Add Product':
 
-    return {
-      data: newProductsList
-    };
+    // const newProductsList = [...state.data, action.payload];
+
+    // return {
+    //   data: newProductsList
+    // };
 
 
     case '[Products] Edit Product':
@@ -57,6 +58,14 @@ export function reducer(
     return {
       ...state,
       data: newProducts
+    };
+
+    case '[Products] Load Products Success':
+
+    return {
+      ...state,
+      data: action.payload,
+      loading: false
     };
 
     default:

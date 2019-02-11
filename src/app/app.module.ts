@@ -11,6 +11,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/containers/products/products.component';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
+import { CoreModule } from './core/core.module';
+import { EffectsModule } from '@ngrx/effects';
 
 
 const appRoutes: Routes = [
@@ -28,13 +30,14 @@ const appRoutes: Routes = [
 ];
 
 
-
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    CoreModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
