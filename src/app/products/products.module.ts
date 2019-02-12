@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductComponent } from './containers/product/product.component';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/products.reduce';
+import { reducer } from './store/products.reducer';
 import { ProductEffects } from './store/products.effects';
 
 
